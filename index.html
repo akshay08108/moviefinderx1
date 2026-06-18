@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movie Finder</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="ambient ambient-one"></div>
+    <div class="ambient ambient-two"></div>
+
+    <main class="app">
+      <nav class="topbar" aria-label="Main navigation">
+        <a class="brand" href="#">
+          <span class="brand-mark">M</span>
+          Movie Finder
+        </a>
+        <div class="nav-links">
+          <a href="#searchForm">Search</a>
+          <a href="#results">Results</a>
+          <a href="#favorites">Favorites</a>
+        </div>
+      </nav>
+
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Stream-ready discovery</p>
+          <h1>Find your next watch in seconds.</h1>
+          <p class="intro">
+            Search movies and shows, browse curated rows, explore series episodes,
+            and jump straight to trailers.
+          </p>
+
+          <div class="quick-searches" aria-label="Popular searches">
+            <button class="chip" type="button" data-search="Sci-Fi">Sci-Fi</button>
+            <button class="chip" type="button" data-search="Action">Action</button>
+            <button class="chip" type="button" data-search="Drama">Drama</button>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <div class="hero-card-header">
+            <p class="eyebrow">Recently released</p>
+            <span class="pulse-dot"></span>
+          </div>
+          <div class="recent-stack" id="recentStack"></div>
+        </div>
+      </section>
+
+      <section class="search-panel">
+        <form id="searchForm" class="search-form">
+          <div class="field">
+            <label for="searchText">Movie or show name</label>
+            <input
+              id="searchText"
+              type="search"
+              placeholder="Example: Batman, Breaking Bad, Friends"
+              autocomplete="off"
+            />
+            <div class="suggestions" id="suggestions" hidden></div>
+          </div>
+
+          <button class="search-button" type="submit">
+            <span>Search</span>
+            <span aria-hidden="true">→</span>
+          </button>
+        </form>
+      </section>
+
+      <section class="tool-actions" aria-label="Search tools">
+        <button class="ghost-button" id="toggleFilters" type="button">Filters</button>
+        <button class="ghost-button" id="showFavorites" type="button">
+          Favorites <span id="favoriteCount">0</span>
+        </button>
+      </section>
+
+      <section class="tool-row" id="filterPanel" aria-label="Search filters" hidden>
+        <div class="filter-group">
+          <label for="typeFilter">Type</label>
+          <select id="typeFilter">
+            <option value="">All</option>
+            <option value="movie">Movies</option>
+            <option value="series">Series</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label for="yearFilter">Year</label>
+          <input id="yearFilter" type="number" placeholder="Any year" min="1900" max="2099" />
+        </div>
+
+        <button class="ghost-button" id="clearFilters" type="button">Clear filters</button>
+      </section>
+
+      <section class="status" id="status">Search any movie or show.</section>
+      <section class="results" id="results"></section>
+
+      <section class="browse-section" id="browseRows">
+        <div class="section-heading">
+          <p class="eyebrow">Browse</p>
+          <h2>Top movies</h2>
+        </div>
+        <div class="card-row" id="topMovies"></div>
+
+        <div class="section-heading row-heading">
+          <p class="eyebrow">Language picks</p>
+          <h2>Movies by language</h2>
+        </div>
+        <div class="language-grid">
+          <section>
+            <h3>Hindi</h3>
+            <div class="card-row" id="hindiMovies"></div>
+          </section>
+          <section>
+            <h3>Telugu</h3>
+            <div class="card-row" id="teluguMovies"></div>
+          </section>
+          <section>
+            <h3>Tamil</h3>
+            <div class="card-row" id="tamilMovies"></div>
+          </section>
+        </div>
+
+        <div class="section-heading row-heading">
+          <p class="eyebrow">Genres</p>
+          <h2>Movies by genre</h2>
+        </div>
+        <div class="language-grid">
+          <section>
+            <h3>Action</h3>
+            <div class="card-row" id="actionMovies"></div>
+          </section>
+          <section>
+            <h3>Drama</h3>
+            <div class="card-row" id="dramaMovies"></div>
+          </section>
+          <section>
+            <h3>Comedy</h3>
+            <div class="card-row" id="comedyMovies"></div>
+          </section>
+        </div>
+      </section>
+
+      <section class="favorites-panel" id="favorites" hidden>
+        <div class="section-heading">
+          <p class="eyebrow">Saved picks</p>
+          <h2>Your favorites</h2>
+        </div>
+        <div class="results compact-results" id="favoriteResults"></div>
+      </section>
+    </main>
+
+    <div class="modal" id="detailsModal" aria-hidden="true">
+      <div class="modal-backdrop" data-close-modal></div>
+      <section class="modal-card watch-modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <button class="close-button" type="button" data-close-modal aria-label="Close details">×</button>
+        <div id="modalContent" class="modal-content"></div>
+      </section>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
